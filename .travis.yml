@@ -1,5 +1,25 @@
 language: minimal
 
 script:
-  - echo "Hello"
+  - echo "Check differences between official Dockerfile and this repo's Dockerfile"
+  - wget https://raw.githubusercontent.com/GoogleChrome/puppeteer/master/docs/troubleshooting.md
+  - function getLineNum(){ grep -nF "$1" troubleshooting.md | cut -d':' -f1; }
+  - lineNumAtSectionTitle=$(getLineNum '## Running Puppeteer in Docker')
+  - lineNumFrom=$(
+    for lineNum in $(getLineNum '```Dockerfile'); do
+      if [ $lineNum -gt $lineNumAtSectionTitle ]; then
+        echo $(($lineNum + 1))
+        break
+      fi
+    done
+  )
+  - lineNumTo=$(
+    for lineNum in $(getLineNum '```'); do
+      if [ $lineNum -gt $lineNumFrom ]; then
+        echo $(($lineNum - 1))
+        break
+      fi
+    done
+  )
+  - diff <(sed -n ${lineNumFrom},${lineNumTo}p troubleshooting.md) Dockerfile
   # - curl -X POST https://cloud.docker.com/api/build/v1/source/77579ec2-1de2-42f5-88a6-d2225ae85175/trigger/b55a9eea-69d4-4bec-9a21-f3fd446b2aa3/call/
