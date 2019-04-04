@@ -29,4 +29,6 @@ lineNumTo=$(
   done
 )
 
-diff <(sed -n ${lineNumFrom},${lineNumTo}p troubleshooting.md) Dockerfile
+diff <(sed -n ${lineNumFrom},${lineNumTo}p troubleshooting.md) "$(dirname "$0")/../Dockerfile"
+
+rm troubleshooting.md
