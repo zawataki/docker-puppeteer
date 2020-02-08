@@ -1,4 +1,6 @@
 [![Build Status](https://travis-ci.org/zawataki/docker-puppeteer.svg?branch=master)](https://travis-ci.org/zawataki/docker-puppeteer)
+[![Docker Pulls](https://img.shields.io/docker/pulls/zawataki/puppeteer)](https://hub.docker.com/r/zawataki/puppeteer)
+
 # docker-puppeteer
 A Docker image for [Puppeteer](https://github.com/GoogleChrome/puppeteer).  
 The image has been published to [Docker Hub](https://hub.docker.com/r/zawataki/puppeteer).  
