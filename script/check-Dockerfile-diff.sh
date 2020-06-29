@@ -3,7 +3,7 @@
 set -eu
 
 echo "Check differences of Dockerfile between official and this repo"
-wget https://raw.githubusercontent.com/GoogleChrome/puppeteer/master/docs/troubleshooting.md
+wget https://raw.githubusercontent.com/puppeteer/puppeteer/main/docs/troubleshooting.md
 
 function getLineNum() {
   grep -nF "$1" troubleshooting.md | cut -d':' -f1;
